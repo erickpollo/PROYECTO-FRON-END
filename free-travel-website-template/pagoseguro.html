@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout Seguro • Demo Frontend</title>
+  <!-- Seguridad básica (demo): en producción pon un CSP estricto y NO uses inline scripts/styles -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'"> 
+  <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="/" />
+  <style>
+    :root{
+      --bg1:#0f172a; /* slate-900 */
+      --bg2:#1e293b; /* slate-800 */
+      --pri:#7c3aed; /* violet-600 */
+      --pri-2:#a78bfa; /* violet-300 */
+      --ok:#10b981; /* emerald-500 */
+      --err:#ef4444; /* red-500 */
+      --tx:#e2e8f0; /* slate-200 */
+      --muted:#94a3b8; /* slate-400 */
+      --card: rgba(255,255,255,.06);
+      --glass: blur(12px) saturate(140%);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial; 
+      background: radial-gradient(1200px 800px at 20% 10%, #1f1147 0%, #0a0a1f 40%, #05050b 100%),
+                  linear-gradient(120deg, #0f172a 0%, #0b1022 100%);
+      color: var(--tx);
+    }
+    .grid{
+      min-height:100dvh; display:grid; place-items:center; padding:24px;
+    }
+    .wrap{
+      width: min(1100px, 100%); display:grid; gap:24px; grid-template-columns: 1.2fr .8fr;
+    }
+    @media (max-width: 900px){ .wrap{ grid-template-columns: 1fr; } }
+
+    .card{
+      background: var(--card); backdrop-filter: var(--glass); border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius); box-shadow: var(--shadow);
+    }
+    .header{ display:flex; align-items:center; justify-content:space-between; padding:20px 22px; }
+    .brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.2px; }
+    .logo{ width:34px; height:34px; display:grid; place-items:center; border-radius:10px; 
+      background: conic-gradient(from 200deg, var(--pri), #22d3ee, #60a5fa, var(--pri));
+      box-shadow: inset 0 0 12px rgba(255,255,255,.2), 0 6px 18px rgba(124,58,237,.35);
+    }
+    .secure{ display:flex; align-items:center; gap:8px; color:var(--pri-2); font-size:14px; }
+
+    .content{ display:grid; gap:24px; padding:22px; }
+
+    .tabs{ display:flex; gap:8px; flex-wrap:wrap; }
+    .tab{ padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.08); cursor:pointer; user-select:none; }
+    .tab[aria-selected="true"]{ background:linear-gradient(180deg, rgba(124,58,237,.35), rgba(124,58,237,.1)); border-color:rgba(124,58,237,.5); }
+    .tab svg{ vertical-align:-2px; margin-right:6px }
+
+    .form{ display:grid; gap:16px; }
+    .row{ display:grid; gap:14px; grid-template-columns: 1fr 1fr; }
+    @media (max-width:700px){ .row{ grid-template-columns:1fr; } }
+    label{ font-size:14px; color: var(--muted); display:block; margin-bottom:6px; }
+    input, select{ width:100%; padding:14px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); color:var(--tx);
+      outline:none; box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    input:focus, select:focus{ border-color: var(--pri-2); box-shadow: 0 0 0 4px rgba(124,58,237,.16); }
+    .hint{ font-size:12px; color:var(--muted); margin-top:6px }
+
+    .inline{ display:flex; align-items:center; gap:10px }
+    .switch{ width:44px; height:28px; background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:999px; position:relative; cursor:pointer }
+    .switch::after{ content:""; width:22px; height:22px; background:#fff; border-radius:50%; position:absolute; top:2px; left:2px; transition:all .2s ease }
+    .switch[data-on="true"]{ background: rgba(16,185,129,.25); border-color: rgba(16,185,129,.6) }
+    .switch[data-on="true"]::after{ left:20px }
+
+    .summary{ padding:22px; display:grid; gap:16px }
+    .summary .line{ display:flex; align-items:center; justify-content:space-between; color: var(--muted) }
+    .summary .total{ font-size:22px; font-weight:800; color:#fff }
+
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:14px 16px; border-radius:14px; border:none; cursor:pointer; 
+      background: linear-gradient(180deg, var(--pri), #5b21b6); color:#fff; font-weight:700; letter-spacing:.3px; box-shadow: 0 10px 20px rgba(124,58,237,.35);
+    }
+    .btn:disabled{ opacity:.6; filter:grayscale(.2); cursor:not-allowed }
+
+    .badge{ padding:6px 10px; border:1px solid rgba(255,255,255,.14); border-radius:999px; color:var(--muted); font-size:12px }
+
+    .card-preview{
+      display:grid; grid-template-columns: 1fr 1fr; gap:24px; align-items:start;
+    }
+    @media (max-width: 900px){ .card-preview{ grid-template-columns:1fr; } }
+
+    .cc{
+      border-radius:18px; padding:20px; aspect-ratio: 16/10; background: radial-gradient(120% 90% at 0% 0%, #7c3aed 0%, #1f1147 60%, #0b0718 100%);
+      display:grid; grid-template-rows: auto 1fr auto; gap:10px; box-shadow: inset 0 0 40px rgba(255,255,255,.08), 0 20px 40px rgba(124,58,237,.2);
+    }
+    .cc .row1{ display:flex; align-items:center; justify-content:space-between }
+    .cc .chip{ width:46px; height:34px; border-radius:8px; background:linear-gradient(180deg, #ffe7a8, #c4a04b); box-shadow: inset 0 0 10px rgba(0,0,0,.2) }
+    .cc .brand{ font-weight:900; letter-spacing:.8px }
+    .cc .number{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; letter-spacing:1.6px; font-size:20px }
+    .cc .footer{ display:flex; align-items:center; justify-content:space-between; font-size:12px }
+
+    .ok{ color: var(--ok) }
+    .err{ color: var(--err) }
+    .sr-only{ position:absolute; left:-9999px }
+    .divider{ height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent) }
+    .foot-hint{ font-size:12px; color:var(--muted); text-align:center; padding:10px 16px }
+
+    .toast{ position:fixed; z-index:50; inset:auto 16px 16px auto; padding:14px 16px; background:rgba(16,185,129,.15); border:1px solid rgba(16,185,129,.5); color:#ecfdf5; border-radius:14px; display:none }
+    .toast.show{ display:block }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div class="wrap">
+      <!-- Columna principal -->
+      <section class="card">
+        <div class="header">
+          <div class="brand">
+            <div class="logo" aria-hidden="true"></div>
+            <span>Checkout</span>
+            <span class="badge">Demo Frontend</span>
+          </div>
+          <div class="secure" aria-live="polite" aria-atomic="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1a7 7 0 0 0-7 7v3H4a2 2 0 0 0-2 2v7a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-7a2 2 0 0 0-2-2h-1V8a7 7 0 0 0-7-7Zm0 2a5 5 0 0 1 5 5v3H7V8a5 5 0 0 1 5-5Z"/></svg>
+            <span>Conexión segura • HTTPS</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="content">
+          <div class="tabs" role="tablist" aria-label="Método de pago">
+            <button class="tab" role="tab" aria-selected="true" data-tab="card" id="tab-card">💳 Tarjeta</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="transfer">🏦 Transferencia</button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="wallet">👜 Billetera</button>
+          </div>
+
+          <!-- Vista tarjeta -->
+          <div class="card-preview" id="view-card" role="tabpanel" aria-labelledby="tab-card">
+            <div class="cc" aria-hidden="true">
+              <div class="row1">
+                <div class="chip"></div>
+                <div class="brand" id="cc-brand">VISA</div>
+              </div>
+              <div class="number" id="cc-number">•••• •••• •••• ••••</div>
+              <div class="footer">
+                <div>VÁLIDA HASTA <span id="cc-exp">__/__</span></div>
+                <div>TITULAR <span id="cc-name">—</span></div>
+              </div>
+            </div>
+
+            <form class="form" id="payment-form" novalidate autocomplete="on">
+              <div>
+                <label for="cardName">Nombre del titular</label>
+                <input id="cardName" name="cc-name" autocomplete="cc-name" placeholder="Como aparece en la tarjeta" required inputmode="text" />
+              </div>
+              <div>
+                <label for="cardNumber">Número de tarjeta</label>
+                <input id="cardNumber" name="cc-number" autocomplete="cc-number" placeholder="0000 0000 0000 0000" required inputmode="numeric" maxlength="19" aria-describedby="cardHelp" />
+                <div class="hint" id="cardHelp">Aceptamos Visa, Mastercard, Amex. No guardamos tu información.</div>
+              </div>
+              <div class="row">
+                <div>
+                  <label for="cardExp">Expiración (MM/AA)</label>
+                  <input id="cardExp" name="cc-exp" autocomplete="cc-exp" placeholder="MM/AA" required inputmode="numeric" maxlength="5" />
+                </div>
+                <div>
+                  <label for="cardCvc">CVC/CVV</label>
+                  <input id="cardCvc" name="cc-csc" autocomplete="cc-csc" placeholder="123" required inputmode="numeric" maxlength="4" />
+                </div>
+              </div>
+              <div class="row">
+                <div>
+                  <label for="docType">Documento</label>
+                  <select id="docType" name="docType" required>
+                    <option value="">Selecciona…</option>
+                    <option value="cc">Cédula</option>
+                    <option value="ce">C.E.</option>
+                    <option value="nit">NIT</option>
+                    <option value="pp">Pasaporte</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="docId">N.º documento</label>
+                  <input id="docId" name="docId" placeholder="1234567890" inputmode="numeric" required />
+                </div>
+              </div>
+
+              <div class="inline">
+                <div class="switch" id="save-switch" role="switch" aria-checked="false" tabindex="0" data-on="false" title="No se guardarán datos reales en esta demo"></div>
+                <span class="hint">Recordar tarjeta para la próxima (demo)</span>
+              </div>
+
+              <button class="btn" id="payBtn" type="submit" disabled>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 7H3a1 1 0 0 1 0-2h18a1 1 0 1 1 0 2ZM3 10h18v7a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-7Zm3 3a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H6Z"/></svg>
+                Pagar ahora
+              </button>
+              <div class="foot-hint">⚠️ Demo frontend: necesitas un backend / pasarela real (Stripe, PayU, Mercado Pago, etc.) para procesar pagos.</div>
+            </form>
+          </div>
+
+          <!-- Placeholders para otras pestañas (solo UI) -->
+          <div id="view-transfer" class="sr-only" role="tabpanel" aria-labelledby="tab-transfer">
+            <div class="form">
+              <div class="hint">Transferencia bancaria (demo): muestra instrucciones o QR. Integra tu pasarela real en el backend.</div>
+              <input placeholder="Banco • Ej: Bancolombia" />
+              <input placeholder="Referencia de pago" />
+              <button class="btn" type="button">Generar instrucción</button>
+            </div>
+          </div>
+
+          <div id="view-wallet" class="sr-only" role="tabpanel" aria-labelledby="tab-wallet">
+            <div class="form">
+              <div class="hint">Billeteras (demo): Apple Pay, Google Pay, Nequi, Daviplata… Se habilitan desde el backend con Payment Request API/pasarela.</div>
+              <button class="btn" type="button">Conectar billetera</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Columna resumen -->
+      <aside class="card">
+        <div class="summary">
+          <div style="display:flex; align-items:center; gap:10px">
+            <span style="font-weight:800; font-size:18px">Resumen</span>
+            <span class="badge">Orden #A1B2C3</span>
+          </div>
+          <div class="line"><span>Viaje a cartagena</span><span>$ 390.900</span></div>
+          <div class="line"><span>Impuestos</span><span>$ 0</span></div>
+          <div class="line"><span>Descuento</span><span>-$ 5.000</span></div>
+          <div class="divider"></div>
+          <div class="line total"><span>Total</span><span>$ 345.900</span></div>
+          <div class="hint">Tus datos se envían por conexión segura (HTTPS). En producción usa tokenización: el navegador nunca debería ver el número real de la tarjeta.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Pago simulado realizado. ¡Éxito! ✨</div>
+
+<script>
+  // Utilidades de seguridad (frontend):
+  // - Validación estricta, formatos, y Luhn para tarjeta.
+  // - NO guarda datos; usa solo memoria temporal.
+  // - Recuerda: la seguridad real requiere backend + pasarela + HTTPS.
+
+  const form = document.getElementById('payment-form');
+  const btn = document.getElementById('payBtn');
+  const numberInput = document.getElementById('cardNumber');
+  const nameInput = document.getElementById('cardName');
+  const expInput = document.getElementById('cardExp');
+  const cvcInput = document.getElementById('cardCvc');
+  const docType = document.getElementById('docType');
+  const docId = document.getElementById('docId');
+  const brandEl = document.getElementById('cc-brand');
+  const ccNumEl = document.getElementById('cc-number');
+  const ccNameEl = document.getElementById('cc-name');
+  const ccExpEl = document.getElementById('cc-exp');
+  const toast = document.getElementById('toast');
+
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => tab.addEventListener('click', () => switchTab(tab.dataset.tab)));
+  function switchTab(key){
+    tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab===key)));
+    ['card','transfer','wallet'].forEach(id => {
+      const el = document.getElementById('view-'+id);
+      if(!el) return;
+      if(id===key) el.classList.remove('sr-only'); else el.classList.add('sr-only');
+    });
+  }
+
+  const brandRules = [
+    {name:'VISA', regex:/^4/},
+    {name:'MASTERCARD', regex:/^(5[1-5]|2[2-7])/},
+    {name:'AMEX', regex:/^3[47]/},
+    {name:'OTRA', regex:/.*/}
+  ];
+
+  function luhnCheck(num){
+    const s = String(num).replace(/\D/g,'');
+    let sum = 0;
+    let dbl = false;
+    for(let i=s.length-1;i>=0;i--){
+      let d = parseInt(s[i],10);
+      if(dbl){ d*=2; if(d>9) d-=9; }
+      sum+=d; dbl=!dbl;
+    }
+    return s.length>=12 && (sum%10===0);
+  }
+
+  function sanitizeSpaces(v){ return v.replace(/\s+/g,' ').trim(); }
+
+  function formatCardNumber(v){
+    const s = v.replace(/\D/g,'').slice(0,16);
+    return s.replace(/(\d{4})(?=\d)/g, '$1 ');
+  }
+
+  function detectBrand(v){
+    const raw = v.replace(/\D/g,'');
+    return (brandRules.find(r => r.regex.test(raw))||brandRules.at(-1)).name;
+  }
+
+  function formatExp(v){
+    const s = v.replace(/\D/g,'').slice(0,4);
+    if(s.length<3) return s; // 0..2
+    return s.slice(0,2)+"/"+s.slice(2);
+  }
+
+  function isFutureMMYY(v){
+    const m = v.match(/^(\d{2})\/(\d{2})$/);
+    if(!m) return false;
+    let [_, MM, YY] = m; MM = +MM; YY = +YY;
+    if(MM<1 || MM>12) return false;
+    // Interpretar YY 00..99 como 2000..2099 (suficiente para demo)
+    const now = new Date();
+    const yNow = now.getFullYear()%100; // 0..99
+    const mNow = now.getMonth()+1;
+    if(YY>yNow) return true;
+    if(YY<yNow) return false;
+    return MM>=mNow;
+  }
+
+  function setPreview(){
+    const raw = numberInput.value;
+    const brand = detectBrand(raw);
+    brandEl.textContent = brand;
+    ccNumEl.textContent = raw.trim()? raw : '•••• •••• •••• ••••';
+    ccNameEl.textContent = nameInput.value.trim() || '—';
+    ccExpEl.textContent = expInput.value.trim() || '__/__';
+  }
+
+  function validate(){
+    const nameOk = sanitizeSpaces(nameInput.value).length >= 2;
+    const numRaw = numberInput.value.replace(/\D/g,'');
+    const numberOk = luhnCheck(numRaw);
+    const expOk = isFutureMMYY(expInput.value);
+    const cvcLen = detectBrand(numberInput.value)==='AMEX' ? 4 : 3;
+    const cvcOk = cvcInput.value.replace(/\D/g,'').length === cvcLen;
+    const docOk = docType.value && docId.value.replace(/\D/g,'').length >= 6;
+
+    numberInput.setCustomValidity(numberOk? '' : 'Número inválido');
+    expInput.setCustomValidity(expOk? '' : 'Fecha inválida');
+    cvcInput.setCustomValidity(cvcOk? '' : 'CVC inválido');
+
+    btn.disabled = !(nameOk && numberOk && expOk && cvcOk && docOk);
+    setPreview();
+  }
+
+  // Input masking / formateo
+  numberInput.addEventListener('input', e => { 
+    const pos = e.target.selectionStart; 
+    const before = e.target.value; 
+    e.target.value = formatCardNumber(e.target.value); 
+    // best-effort caret
+    if(document.activeElement===e.target){
+      const diff = e.target.value.length - before.length; 
+      e.target.setSelectionRange(Math.max(0, pos+diff), Math.max(0, pos+diff));
+    }
+    validate(); 
+  });
+  expInput.addEventListener('input', e => { e.target.value = formatExp(e.target.value); validate(); });
+  cvcInput.addEventListener('input', validate);
+  nameInput.addEventListener('input', validate);
+  docType.addEventListener('change', validate);
+  docId.addEventListener('input', validate);
+
+  // Toggle switch (demo, no guarda nada real)
+  const saveSwitch = document.getElementById('save-switch');
+  saveSwitch.addEventListener('click', () => toggleSwitch());
+  saveSwitch.addEventListener('keydown', (e)=>{ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggleSwitch(); }});
+  function toggleSwitch(){
+    const on = saveSwitch.getAttribute('data-on')==='true';
+    saveSwitch.setAttribute('data-on', String(!on));
+    saveSwitch.setAttribute('aria-checked', String(!on));
+  }
+
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    // Nunca envíes tarjetas desde el frontend a tu servidor:
+    // Integra un SDK de pasarela (Stripe Elements, PayU, Mercado Pago) para tokenizar.
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'), 2600);
+    form.reset();
+    btn.disabled = true;
+    setPreview();
+  });
+
+  // Inicial
+  setPreview();
+</script>
+</body>
+</html>
