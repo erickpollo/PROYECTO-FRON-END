@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>Contactos@ViajaFacil.com</p>
+                        <p><i class="fa fa-envelope mr-2"></i>Contacto@ViajaFacil.com</p>
                         <p class="text-body px-3">|</p>
                         <p><i class="fa fa-phone-alt mr-2"></i>+57 313 8804769</p>
                     </div>
@@ -74,20 +74,19 @@
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.html" class="nav-item nav-link">Inicio</a>
-                        <a href="about.html" class="nav-item nav-link">Sobre</a>
+                        <a href="about.html" class="nav-item nav-link">Nosotros</a>
                         <a href="service.html" class="nav-item nav-link">Servicios</a>
                         <a href="package.html" class="nav-item nav-link">Opciones de Viaje</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Detalles</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                <a href="single.html" class="dropdown-item">Blog Detail</a>
-                                <a href="destination.html" class="dropdown-item">Destination</a>
-                                <a href="guide.html" class="dropdown-item">Travel Guides</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                                <a href="blog.html" class="dropdown-item">Blog</a>
+                                <a href="single.html" class="dropdown-item">Detalles Blog</a>
+                                <a href="guide.html" class="dropdown-item">Guia de Viajes</a>
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link active">Contacto</a>
+                        <a href="pagoseguro.html" class="nav-item nav-link">Pago Seguro</a>
                     </div>
                 </div>
             </nav>
@@ -122,7 +121,7 @@
                             <div class="col-md-3">
                                 <div class="mb-3 mb-md-0">
                                     <select class="custom-select px-4" style="height: 47px;">
-                                        <option selected>Origen</option>
+                                        <option value="" selected disabled hidden>Origen</option>
                                         <option value="1">Cartagena</option>
                                         <option value="2">Barranquilla</option>
                                         <option value="3">Medellin</option>
@@ -146,7 +145,7 @@
                             <div class="col-md-3">
                                 <div class="mb-3 mb-md-0">
                                     <select class="custom-select px-4" style="height: 47px;">
-                                        <option selected>Destino</option>
+                                        <option value="" selected disabled hidden>Destino</option>
                                         <option value="1">Cali</option>
                                         <option value="2">Villavicencio</option>
                                         <option value="3">Bucaramanga</option>
@@ -165,51 +164,43 @@
     <!-- Booking End -->
 
 
-    <!-- Contact Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="text-center mb-3 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Contacto</h6>
-                <h1>PQRS </h1>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="contact-form bg-white" style="padding: 30px;">
-                        <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                            <div class="form-row">
-                                <div class="control-group col-sm-6">
-                                    <input type="text" class="form-control p-4" id="name" placeholder="Nombre"
-                                        required="required" data-validation-required-message="Please enter your name" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group col-sm-6">
-                                    <input type="email" class="form-control p-4" id="email" placeholder="Correo"
-                                        required="required" data-validation-required-message="Please enter your email" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
+<!-- Contact Start -->
+<div class="container-fluid py-5" style="background-color: #f9f9f9;">
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <h6 class="text-uppercase text-primary" style="letter-spacing: 20px;">📬 PQRS</h6>
+            <h2 class="font-weight-bold">¿Tienes alguna Petición, Queja, Reclamo o Sugerencia?</h2>
+            <p class="text-muted">¡Queremos escucharte!</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="pqrs-form bg-white shadow-sm rounded p-4 p-md-5">
+                    <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
+                                <input type="text" class="form-control custom-input" id="name" placeholder="Nombre" required>
                             </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control p-4" id="subject" placeholder="Titulo"
-                                    required="required" data-validation-required-message="Please enter a subject" />
-                                <p class="help-block text-danger"></p>
+                            <div class="form-group col-sm-6">
+                                <input type="email" class="form-control custom-input" id="email" placeholder="Correo" required>
                             </div>
-                            <div class="control-group">
-                                <textarea class="form-control py-3 px-4" rows="5" id="message" placeholder="Mensaje"
-                                    required="required"
-                                    data-validation-required-message="Please enter your message"></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="text-center">
-                                <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Enviar Mensaje</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control custom-input" id="subject" placeholder="Título" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control custom-input" rows="5" id="message" placeholder="Mensaje" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-pqrs-submit px-5 py-2" type="submit" id="sendMessageButton">Enviar Mensaje</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Contact End -->
+</div>
+<!-- Contact End -->
+
 
 
     <!-- Footer Start -->
