@@ -4,13 +4,13 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, si
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCYq8nB4IKmn0fySLYT4IItCP9KQNfKa_g",
-  authDomain: "autenticaci-nfirebasejc-main.firebaseapp.com",
-  projectId: "autenticaci-nfirebasejc-main",
-  storageBucket: "autenticaci-nfirebasejc-main.firebasestorage.app",
-  messagingSenderId: "535950668559",
-  appId: "1:535950668559:web:3015cb0c90ee4d185d847a",
-  measurementId: "G-L16G1PY9TF"
+  apiKey: "AIzaSyAciHUAtwIoZ0PA-CQrFUnvFMWUYPwNe3Q",
+  authDomain: "viajafacil-d7038.firebaseapp.com",
+  projectId: "viajafacil-d7038",
+  storageBucket: "viajafacil-d7038.firebasestorage.app",
+  messagingSenderId: "726876506354",
+  appId: "1:726876506354:web:bd79fbf656f2d20c05e86b",
+  measurementId: "G-7HQLGCLBFN"
 };
 
 const app = initializeApp(firebaseConfig);

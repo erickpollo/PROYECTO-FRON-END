@@ -1,0 +1,215 @@
+{
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "packages": "Travel Packages",
+    "details": "Details",
+    "blog": "Blog",
+    "blogDetails": "Blog Details",
+    "travelGuide": "Travel Guide",
+    "contact": "Contact",
+    "payment": "Secure Payment",
+    "language": "Language"
+  },
+  
+  "booking": {
+    "origin": "Origin",
+    "destination": "Destination",
+    "departureDate": "Departure Date",
+    "returnDate": "Return Date",
+    "search": "Search"
+  },
+  
+  "booking": {
+    "origin": "Origin",
+    "destination": "Destination",
+    "departureDate": "Departure Date",
+    "returnDate": "Return Date",
+    "search": "Search"
+  },
+  
+  "carousel": {
+    "alt": "Tours & Travel",
+    "subtitle1": "Tours & Travel",
+    "title1": "Let's Discover the World Together",
+    "subtitle2": "Tours & Travel",
+    "title2": "Discover amazing places with us",
+    "button": "Search"
+  },
+
+  
+  "footer": {
+    "about": "We are an agency that seeks to make your trips easier and more special for everyone",
+    "followUs": "Follow Us",
+    "services": {
+      "title": "Our Services",
+      "about": "About",
+      "services": "Services",
+      "packages": "Travel Packages",
+      "guides": "Guides",
+      "testimonials": "Testimonials",
+      "blog": "Blog"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "info": "Information",
+      "placeholder": "Your Email",
+      "button": "Send"
+    },
+    "copyright": "Copyright © ViajaFácil. All Rights Reserved."
+  },
+
+  
+  "services": {
+    "guide": {
+      "title": "Tour Guide",
+      "desc": "Options to travel with premium recommendations"
+    },
+    "tickets": {
+      "title": "Ticket Booking",
+      "desc": "Book your flights in advance"
+    },
+    "hotel": {
+      "title": "Hotel Reservation",
+      "desc": "Book accommodation anywhere in advance"
+    }
+  },
+
+
+  
+  "testimonials": {
+    "section": "Testimonial",
+    "title": "What our Clients Say",
+    "1": {
+      "text": "Very happy with the service to enjoy my holidays",
+      "name": "Santiago Camacho",
+      "job": "Software Engineer"
+    },
+    "2": {
+      "text": "I liked how easy it was to travel to other places in Colombia",
+      "name": "Mariangel Perilla",
+      "job": "Business Administrator"
+    },
+    "3": {
+      "text": "With ViajaFácil my trips became much easier",
+      "name": "David Paez",
+      "job": "Football Player"
+    },
+    "4": {
+      "text": "Thanks to this website I was able to do my work better",
+      "name": "Erick Criolla",
+      "job": "General Services"
+    }
+  },
+
+  
+  "topbar": {
+    "email": "Contact@ViajaFacil.com",
+    "phone": "+57 313 8804769",
+    "logout": "Log out"
+  },
+
+  
+  "contacto": {
+    "titulo": "Contact",
+    "inicio": "Home",
+    "pqrsTitulo": "Do you have a Request, Complaint, Claim or Suggestion?",
+    "pqrsSubtitulo": "We want to hear from you!",
+    "nombre": "Name",
+    "correo": "Email",
+    "tituloForm": "Subject",
+    "mensaje": "Message",
+    "enviar": "Send Message"
+  },
+
+
+  "header": {
+    "titulo": "Travel Options",
+    "inicio": "Home",
+    "breadcrumb": "Travel Options"
+  },
+
+
+ 
+  "packages": {
+    "sectionTitle": "Travel Options",
+    "mainTitle": "Travel Options Colombia",
+    "items": {
+      "sanAndres": {
+        "location": "San Andrés",
+        "days": "3 days",
+        "persons": "2 People",
+        "desc": "Cool place to enjoy as a couple",
+        "price": "$400,000"
+      },
+      "melgar": {
+        "location": "Melgar",
+        "days": "3 days",
+        "persons": "2 People",
+        "desc": "Perfect place for a relaxing vacation",
+        "price": "$200,000"
+      },
+      "santaMarta": {
+        "location": "Santa Marta",
+        "days": "3 days",
+        "persons": "2 People",
+        "desc": "Place with a great sea view to enjoy together",
+        "price": "$350,000"
+      },
+      "cali": {
+        "location": "Cali",
+        "days": "3 days",
+        "persons": "4 People",
+        "desc": "Ideal for a family weekend",
+        "price": "$150,000"
+      },
+      "covenas": {
+        "location": "Coveñas",
+        "days": "3 days",
+        "persons": "2 People",
+        "desc": "Exotic place for new experiences",
+        "price": "$200,000"
+      },
+      "villavicencio": {
+        "location": "Villavicencio",
+        "days": "3 days",
+        "persons": "1 Person",
+        "desc": "A place to enjoy and have new experiences. Delicious!",
+        "price": "$350,000"
+      }
+    },
+    "rating": "4.5",
+    "reviews": "(250)"
+  },
+  
+  "destinations": {
+    "sectionTitle": "Destinations",
+    "sectionSubtitle": "Explore Top Destinations",
+    "items": [
+      { "country": "Germany", "cities": "100 Cities" },
+      { "country": "England", "cities": "100 Cities" },
+      { "country": "Australia", "cities": "100 Cities" },
+      { "country": "India", "cities": "58 Cities" },
+      { "country": "Sudan", "cities": "48 Cities" },
+      { "country": "Indonesia", "cities": "100 Cities" }
+    ]
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

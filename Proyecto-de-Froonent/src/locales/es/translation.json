@@ -1,0 +1,207 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "packages": "Opciones de Viaje",
+    "details": "Detalles",
+    "blog": "Blog",
+    "blogDetails": "Detalles Blog",
+    "travelGuide": "Guía de Viajes",
+    "contact": "Contacto",
+    "payment": "Pago Seguro",
+    "language": "Idioma"
+  },
+  "booking": {
+    "origin": "Origen",
+    "destination": "Destino",
+    "departureDate": "Fecha Ida",
+    "returnDate": "Fecha Vuelta",
+    "search": "Buscar"
+  },
+  
+  "booking": {
+    "origin": "Origen",
+    "destination": "Destino",
+    "departureDate": "Fecha Ida",
+    "returnDate": "Fecha Vuelta",
+    "search": "Buscar"
+  },
+  
+  "carousel": {
+    "alt": "Tours & Viajes",
+    "subtitle1": "Tours & Viajes",
+    "title1": "Descubramos el Mundo Juntos",
+    "subtitle2": "Tours & Viajes",
+    "title2": "Descubre lugares increíbles con nosotros",
+    "button": "Buscar"
+  },
+
+  
+  "footer": {
+    "about": "Somos una agencia que busca hacer tus viajes más fáciles y especiales para todos ustedes",
+    "followUs": "Síguenos",
+    "services": {
+      "title": "Nuestros Servicios",
+      "about": "Sobre",
+      "services": "Servicios",
+      "packages": "Opciones de Viaje",
+      "guides": "Guías",
+      "testimonials": "Testimonios",
+      "blog": "Blog"
+    },
+    "contact": {
+      "title": "Contáctanos",
+      "info": "Información",
+      "placeholder": "Tu Email",
+      "button": "Enviar"
+    },
+    "copyright": "Copyright © ViajaFácil. Todos los Derechos Reservados."
+  },
+
+  
+  "services": {
+    "guide": {
+      "title": "Guía Turístico",
+      "desc": "Opciones para hacer un viaje con recomendaciones plus"
+    },
+    "tickets": {
+      "title": "Reserva de Tiquetes",
+      "desc": "Para poder tener tus vuelos con anticipación"
+    },
+    "hotel": {
+      "title": "Reserva de Hotel",
+      "desc": "Para alojarte en cualquier lugar con anticipación"
+    }
+  },
+
+
+
+  
+  "testimonials": {
+    "section": "Testimonio",
+    "title": "Opinión de nuestros Clientes",
+    "1": {
+      "text": "Muy contento con el servicio para disfrutar mis vacaciones",
+      "name": "Santiago Camacho",
+      "job": "Ing Software"
+    },
+    "2": {
+      "text": "Me gustó la facilidad con la que fui a otros sitios de Colombia",
+      "name": "Mariangel Perilla",
+      "job": "Admin Empresas"
+    },
+    "3": {
+      "text": "Con ViajaFácil pude hacer mis viajes más fáciles",
+      "name": "David Paez",
+      "job": "Futbolista"
+    },
+    "4": {
+      "text": "Gracias a esta web pude hacer mi trabajo mejor",
+      "name": "Erick Criolla",
+      "job": "Servicios Generales"
+    }
+  },
+
+  
+  "topbar": {
+    "email": "Contacto@ViajaFacil.com",
+    "phone": "+57 313 8804769",
+    "logout": "Cerrar sesión"
+  },
+
+  
+  "contacto": {
+    "titulo": "Contacto",
+    "inicio": "Inicio",
+    "pqrsTitulo": "¿Tienes alguna Petición, Queja, Reclamo o Sugerencia?",
+    "pqrsSubtitulo": "¡Queremos escucharte!",
+    "nombre": "Nombre",
+    "correo": "Correo",
+    "tituloForm": "Título",
+    "mensaje": "Mensaje",
+    "enviar": "Enviar Mensaje"
+  },
+  
+
+  "header": {
+    "titulo": "Opciones de viaje",
+    "inicio": "Inicio",
+    "breadcrumb": "Opciones de viaje"
+  },
+
+
+
+    
+  "packages": {
+    "sectionTitle": "Opciones de viaje",
+    "mainTitle": "Opciones de viajes Colombia",
+    "items": {
+      "sanAndres": {
+        "location": "San Andrés",
+        "days": "3 días",
+        "persons": "2 Personas",
+        "desc": "Lugar chévere para disfrutar en pareja",
+        "price": "$400.000"
+      },
+      "melgar": {
+        "location": "Melgar",
+        "days": "3 días",
+        "persons": "2 Personas",
+        "desc": "Lugar para tomar unas relajadas vacaciones",
+        "price": "$200.000"
+      },
+      "santaMarta": {
+        "location": "Santa Marta",
+        "days": "3 días",
+        "persons": "2 Personas",
+        "desc": "Lugar con buena vista al mar para estar en compañía",
+        "price": "$350.000"
+      },
+      "cali": {
+        "location": "Cali",
+        "days": "3 días",
+        "persons": "4 Personas",
+        "desc": "Para pasar un fin de semana en familia",
+        "price": "$150.000"
+      },
+      "covenas": {
+        "location": "Coveñas",
+        "days": "3 días",
+        "persons": "2 Personas",
+        "desc": "Lugar exótico para nuevas experiencias",
+        "price": "$200.000"
+      },
+      "villavicencio": {
+        "location": "Villavicencio",
+        "days": "3 días",
+        "persons": "1 Persona",
+        "desc": "Lugar para disfrutar y tener nuevas experiencias ¡QUÉ RICO!",
+        "price": "$350.000"
+      }
+    },
+    "rating": "4.5",
+    "reviews": "(250)"
+  },
+  
+  "destinations": {
+    "sectionTitle": "Destinos",
+    "sectionSubtitle": "Explorar Destinos TOP",
+    "items": [
+      { "country": "Alemania", "cities": "100 Ciudades" },
+      { "country": "Inglaterra", "cities": "100 Ciudades" },
+      { "country": "Australia", "cities": "100 Ciudades" },
+      { "country": "India", "cities": "58 Ciudades" },
+      { "country": "Sudán", "cities": "48 Ciudades" },
+      { "country": "Indonesia", "cities": "100 Ciudades" }
+    ]
+  }
+
+
+
+
+
+
+
+
+
+}

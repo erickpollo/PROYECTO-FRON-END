@@ -18,10 +18,11 @@ import destination6 from "../img/destination-6.jpg";
 
 
 import Footer from "../components/Footer";
-import "../css/style.css"; // Ajusta la ruta según la ubicación real
-
+import "../css/style.css"; 
+import { useTranslation } from "react-i18next"; // 👈 importar hook
 
 export default function Home() {
+  const { t } = useTranslation(); // 👈 inicializar traducción
     return (
 
         <>

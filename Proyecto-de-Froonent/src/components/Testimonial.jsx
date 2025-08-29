@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next"; // 👈 Importamos hook
 
 // 👇 importa desde src/img/
 import testimonial1 from "../img/testimonial-1.jpg";
@@ -9,11 +10,13 @@ import testimonial4 from "../img/testimonial-4.jpg";
 import "../css/style.css";
 
 export default function Testimonial() {
+  const { t } = useTranslation();
+
   const testimonials = [
-    { img: testimonial1, text: "Muy contento con el servicio para disfrutar mis vacaciones", name: "Santiago Camacho", job: "Ing Software" },
-    { img: testimonial2, text: "Me gusto la facilidad con la que fui a otros sitios de colombia", name: "Mariangel Perilla", job: "Admin Empresas" },
-    { img: testimonial3, text: "Con ViajaFacil pude hacer mis viajes mas faciles", name: "David Paez", job: "Futbolista" },
-    { img: testimonial4, text: "Gracias a esta web pude hacer mi trabajo mejor", name: "Erick Criolla", job: "Servicios Generales" },
+    { img: testimonial1, text: t("testimonials.1.text"), name: t("testimonials.1.name"), job: t("testimonials.1.job") },
+    { img: testimonial2, text: t("testimonials.2.text"), name: t("testimonials.2.name"), job: t("testimonials.2.job") },
+    { img: testimonial3, text: t("testimonials.3.text"), name: t("testimonials.3.name"), job: t("testimonials.3.job") },
+    { img: testimonial4, text: t("testimonials.4.text"), name: t("testimonials.4.name"), job: t("testimonials.4.job") }
   ];
 
   return (
@@ -21,12 +24,12 @@ export default function Testimonial() {
       <div className="container py-5">
         <div className="text-center mb-3 pb-3">
           <h6 className="text-primary text-uppercase" style={{ letterSpacing: "5px" }}>
-            Testimonio
+            {t("testimonials.section")}
           </h6>
-          <h1>Opinión de nuestros Clientes</h1>
+          <h1>{t("testimonials.title")}</h1>
         </div>
 
-        {/*  quité owl-carousel y uso flex de bootstrap */}
+        {/* uso flex de bootstrap */}
         <div className="d-flex flex-wrap justify-content-center gap-4">
           {testimonials.map((item, idx) => (
             <div className="text-center pb-4" key={idx}>
