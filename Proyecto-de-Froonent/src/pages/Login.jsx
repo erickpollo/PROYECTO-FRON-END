@@ -22,7 +22,7 @@ const Login = () => {
   // ✅ Si el usuario está logueado, redirige al home
   useEffect(() => {
     if (user) {
-      navigate("/Contact");
+      navigate("/Home");
     }
   }, [user, navigate]);
 

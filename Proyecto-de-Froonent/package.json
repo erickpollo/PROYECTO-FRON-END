@@ -10,19 +10,29 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^5.1.2",
+    "axios": "^1.12.2",
     "bootstrap": "^5.3.8",
     "firebase": "^12.2.0",
     "font-awesome": "^4.7.0",
     "i18next": "^25.4.2",
     "i18next-browser-languagedetector": "^8.2.0",
+    "mapbox-gl": "^3.15.0",
     "owl.carousel": "^2.3.4",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.10",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
+    "react-hot-toast": "^2.6.0",
     "react-i18next": "^15.7.3",
     "react-icons": "^5.5.0",
     "react-router-dom": "^6.30.1",
-    "tempusdominus-bootstrap-4": "^5.1.2"
+    "tempusdominus-bootstrap-4": "^5.1.2",
+    "workbox-core": "^7.3.0",
+    "workbox-expiration": "^7.3.0",
+    "workbox-precaching": "^7.3.0",
+    "workbox-routing": "^7.3.0",
+    "workbox-strategies": "^7.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
