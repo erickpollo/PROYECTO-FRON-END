@@ -1,48 +1,23 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-// Definimos el esquema de reservas (Booking)
-const bookingSchema = new mongoose.Schema({
-  // Origen de la reserva
-  origin: {
-    name: { type: String, required: true }, // Nombre del lugar
-    location: {
-      type: {
-        type: String,
-        enum: ["Point"], // Solo tipo "Point"
-        required: true,
-      },
-      coordinates: {
-        type: [Number], // Formato: [longitud, latitud]
-        required: true,
-      },
+const bookingSchema = new mongoose.Schema(
+  {
+    origin: {
+      name: { type: String, required: true },         // Nombre como string
+      coordinates: { type: [Number], required: true } // [lng, lat]
     },
-  },
-
-  // Destino de la reserva
-  destination: {
-    name: { type: String, required: true },
-    location: {
-      type: {
-        type: String,
-        enum: ["Point"],
-        required: true,
-      },
-      coordinates: {
-        type: [Number], // [lng, lat]
-        required: true,
-      },
+    destination: {
+      name: { type: String, required: true },         // Nombre como string
+      coordinates: { type: [Number], required: true } // [lng, lat]
     },
+    departureDate: { type: String, required: true },
+    returnDate: { type: String }
   },
+  { timestamps: true }
+);
 
-  // Fechas de la reserva
-  departureDate: { type: String, required: true },
-  returnDate: { type: String },
+// Índices para consultas geoespaciales
+bookingSchema.index({ "origin.coordinates": "2dsphere" });
+bookingSchema.index({ "destination.coordinates": "2dsphere" });
 
-});
-
-// Índices espaciales para consultas geográficas
-bookingSchema.index({ "origin.location": "2dsphere" });
-bookingSchema.index({ "destination.location": "2dsphere" });
-
-module.exports = mongoose.model("Booking", bookingSchema);
-
+module.exports = mongoose.model('Booking', bookingSchema);
