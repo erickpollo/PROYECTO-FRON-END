@@ -1,4 +1,6 @@
-const bookingSchema = mongoose.Schema(
+const mongoose = require('mongoose');
+
+const bookingSchema = new mongoose.Schema(
   {
     origin: {
       name: String,
@@ -11,7 +13,8 @@ const bookingSchema = mongoose.Schema(
       name: String,
       coordinates: [Number], // [lng, lat]
     },
-    returnDate: { type: String },
   },
   { timestamps: true }
 );
+
+module.exports = mongoose.model('Booking', bookingSchema);
