@@ -3,7 +3,7 @@ require('dotenv').config(); // Carga las variables de entorno desde el archivo .
 const express = require('express'); // Framework web para Node.js
 const mongoose = require('mongoose'); // ODM para MongoDB
 const cors = require('cors'); // Middleware para habilitar CORS
-const clienteRoutes = require('./routes/clienteRoutes'); // Rutas para la entidad Cliente
+const bookingRoutes = require('./routes/bookingRoutes'); // Rutas para la entidad Cliente
 const sedeRoutes = require('./routes/sedeRoutes'); // Rutas para la entidad Sede
 
 // Creación de la aplicación Express
@@ -27,7 +27,7 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch(err => console.error('Error al conectar a MongoDB Atlas:', err)); // Manejo de errores en la conexión
 
 // Rutas
-app.use('/api/clientes', clienteRoutes); // Define las rutas bajo el prefijo /api/clientes
+app.use('/api/booking', bookingRoutes); // Define las rutas bajo el prefijo /api/clientes
 app.use('/api/sedes', sedeRoutes); // Define las rutas bajo el prefijo /api/sedes
 
 // Puerto en el que se ejecutará el servidor
